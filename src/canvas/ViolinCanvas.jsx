@@ -1,6 +1,7 @@
-import React, { Suspense, useRef, useState } from 'react'
+import React, { Suspense, useRef, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Preload, useGLTF, CameraControls } from '@react-three/drei'
+import { NavState } from '../constants/type'
 
 const Violin = () => {
   const violin = useGLTF('./violin3D/scene.gltf')
@@ -29,20 +30,37 @@ const Violin = () => {
 
 const DEG45 = Math.PI / 4
 
-export default function ViolinCanvas() {
+export default function ViolinCanvas({ currentNav }) {
   const cameraControlRef = useRef()
 
-  const firstMove = () => {
-    cameraControlRef.current?.reset(true)
+  const handleNavChange = (currentNav) => {
+    switch (currentNav) {
+      case NavState.About:
+        cameraControlRef.current?.reset(true)
+        break
+      case NavState.Work:
+        cameraControlRef.current?.setLookAt(1.582, -8.66, 4.749, 1, -3, 0, true)
+        break
+      case NavState.Skill:
+        cameraControlRef.current?.setLookAt(
+          3.737,
+          11.643,
+          3.115,
+          1.5,
+          12,
+          -1,
+          true
+        )
+        break
+      default:
+        cameraControlRef.current?.reset(true)
+        break
+    }
   }
 
-  const secondMove = async () => {
-    cameraControlRef.current?.setLookAt(1.582, -8.66, 4.749, 1, -3, 0, true)
-  }
-
-  const thirdMove = async () => {
-    cameraControlRef.current?.setLookAt(3.737, 11.643, 3.115, 1.5, 12, -1, true)
-  }
+  useEffect(() => {
+    handleNavChange(currentNav)
+  }, [currentNav])
 
   return (
     <div className="w-full h-screen">
@@ -59,7 +77,7 @@ export default function ViolinCanvas() {
 
         <Preload all />
       </Canvas>
-      <div className="absolute top-0">
+      {/* <div className="absolute top-0">
         <div className="flex gap-10">
           <button type="button" onClick={firstMove}>
             first
@@ -83,7 +101,7 @@ export default function ViolinCanvas() {
             getValue
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
