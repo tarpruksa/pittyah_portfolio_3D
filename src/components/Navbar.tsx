@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavState, NavStateType } from '../constants/type'
 import { navData } from '../constants/data'
+import { Link } from 'react-router-dom'
 
 interface NavbarProps extends NavStateType {
   setCurrentNav(val: NavState): void
@@ -18,7 +19,7 @@ export default function Navbar({ currentNav, setCurrentNav }: NavbarProps) {
             } hover:text-white text-[18px] font-medium cursor-pointer`}
             onClick={() => setCurrentNav(nav.id)}
           >
-            <a href={`#${NavState[nav.id].toLowerCase()}`}>{nav.title}</a>
+            <Link to={NavState[nav.id].toLowerCase()}>{nav.title}</Link>
           </li>
         ))}
       </ul>

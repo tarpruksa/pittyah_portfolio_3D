@@ -1,4 +1,4 @@
-enum NavState {
+export enum NavState {
   About,
   Work,
   Skill,
@@ -6,8 +6,23 @@ enum NavState {
   Contact,
 }
 
-type NavStateType = {
+export type CertificateData = {
+  title: string
+  img: string
+  link: string
+  date: string
+}
+export type DirectionType = 'left' | 'right' | 'up' | 'down' | null
+export type TransitionType = 'spring' | 'tween' | 'inertia' | null
+
+export const getNavString = (input: NavState) => {
+  return NavState[input].toLowerCase()
+}
+
+export type NavStateType = {
   currentNav: NavState
 }
 
-export { NavState, NavStateType }
+export type IndexType = {
+  index: number
+}

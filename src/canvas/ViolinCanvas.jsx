@@ -2,7 +2,7 @@ import React, { Suspense, useRef, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Preload, useGLTF, CameraControls } from '@react-three/drei'
 import { NavState } from '../constants/type'
-
+import { Outlet } from 'react-router-dom'
 const Violin = () => {
   const violin = useGLTF('./violin3D/scene.gltf')
 
@@ -63,7 +63,7 @@ export default function ViolinCanvas({ currentNav }) {
   }, [currentNav])
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen fixed cursor-grab">
       <Canvas>
         <CameraControls
           ref={cameraControlRef}
@@ -77,31 +77,6 @@ export default function ViolinCanvas({ currentNav }) {
 
         <Preload all />
       </Canvas>
-      {/* <div className="absolute top-0">
-        <div className="flex gap-10">
-          <button type="button" onClick={firstMove}>
-            first
-          </button>
-          <button type="button" onClick={secondMove}>
-            second
-          </button>
-          <button type="button" onClick={thirdMove}>
-            third
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              const res = cameraControlRef.current?.getTarget(null, true)
-              const res2 = cameraControlRef.current?.getPosition(null, true)
-              console.log('orbit', res)
-              console.log('position', res2)
-            }}
-          >
-            getValue
-          </button>
-        </div>
-      </div> */}
     </div>
   )
 }
