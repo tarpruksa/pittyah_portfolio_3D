@@ -9,12 +9,14 @@ import {
   reactjs,
   redux,
   tailwind,
-  nodejs,
+  azuredevops,
   mongodb,
   git,
   threejs,
+  c,
+  netmvc,
 } from '../assets'
-import { CertificateData, NavState } from './type'
+import { CertificateData, NavState, SkillType } from './type'
 
 export const navData = [
   { id: NavState.About, title: NavState[NavState.About] },
@@ -74,10 +76,8 @@ export const skills = [
     name: 'Tailwind CSS',
     icon: tailwind,
   },
-  {
-    name: 'Node JS',
-    icon: nodejs,
-  },
+  { name: 'C#', icon: c },
+  { name: '.NET MVC', icon: netmvc },
   {
     name: 'MongoDB',
     icon: mongodb,
@@ -87,7 +87,8 @@ export const skills = [
     icon: threejs,
   },
   {
-    name: 'git',
+    name: 'Git',
     icon: git,
   },
-]
+  { name: 'Azure Devops', icon: azuredevops },
+] as SkillType[]

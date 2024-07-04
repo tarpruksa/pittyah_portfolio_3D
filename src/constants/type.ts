@@ -12,6 +12,7 @@ export type CertificateData = {
   link: string
   date: string
 }
+
 export type DirectionType = 'left' | 'right' | 'up' | 'down' | null
 export type TransitionType = 'spring' | 'tween' | 'inertia' | null
 
@@ -25,4 +26,9 @@ export type NavStateType = {
 
 export type IndexType = {
   index: number
+}
+
+export type SkillType = {
+  name: string
+  icon: string
 }

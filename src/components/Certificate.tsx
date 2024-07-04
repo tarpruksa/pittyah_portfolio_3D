@@ -21,10 +21,10 @@ const CertificateCard = ({
   return (
     <motion.div
       variants={fadeIn('right', 'spring', index * 0.5 + 0.35, 0.75)}
-      className="rounded-[20px] w-[320px] bg-transparent shadow-card pointer-events-auto"
+      className="rounded-[20px] w-[320px] bg-grey hover:bg-grey-2 shadow-card pointer-events-auto"
     >
       <a href={link} target="_blank">
-        <div className="rounded-[20px] bg-transparent py-1 px-1 min-h-[280px] flex justify-evenly items-center flex-col">
+        <div className="rounded-[20px] bg-transparent py-1 pb-4 p px-1 min-h-[280px] flex justify-evenly items-center flex-col">
           <img
             src={img}
             alt="web-development"

@@ -15,6 +15,7 @@ import threejs from './skill/threejs.svg'
 import c from './skill/c.png'
 import netmvc from './skill/netmvc.png'
 import galaxy from './galaxy.jpg'
+import azuredevops from './skill/azuredevops.svg'
 
 export {
   certificate_meta,
@@ -34,4 +35,5 @@ export {
   c,
   netmvc,
   galaxy,
+  azuredevops,
 }

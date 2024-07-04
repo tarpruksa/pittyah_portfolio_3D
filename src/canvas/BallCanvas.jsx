@@ -1,55 +1,87 @@
-import React, { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
+import React, { useState, Suspense, useRef } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
 import {
   Decal,
   Float,
   OrbitControls,
   Preload,
   useTexture,
+  CameraControls,
 } from '@react-three/drei'
 import LoadCanvas from './LoaderCanvas'
 
 const Ball = (props) => {
+  const meshRef = useRef()
   const [decal] = useTexture([props.imgUrl])
-
   return (
-    <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
-      <ambientLight intensity={0.25} />
-      <directionalLight position={[0, 0, 0.05]} />
-      <mesh castShadow receiveShadow scale={2.75}>
-        <icosahedronGeometry args={[1, 1]} />
-        <meshStandardMaterial
-          color="#fff8eb"
-          polygonOffset
-          polygonOffsetFactor={-5}
-          flatShading
-        />
-        {/* <Decal
-          position={[0, 0, 1]}
-          rotation={[2 * Math.PI, 0, 6.25]}
-          scale={1}
-          map={decal}
-          flatShading
-        /> */}
-      </mesh>
-    </Float>
+    <>
+      <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
+        <ambientLight intensity={0.25} />
+        <directionalLight position={[0, 0, 0.05]} />
+        <mesh castShadow receiveShadow scale={2.75} ref={meshRef}>
+          <icosahedronGeometry args={[1, 1]} />
+          <meshStandardMaterial
+            color="#fff8eb"
+            polygonOffset
+            polygonOffsetFactor={-5}
+            flatShading
+          />
+          <Decal
+            position={[0, 0, 1]}
+            rotation={[2 * Math.PI, 0, 6.25]}
+            scale={1}
+            map={decal}
+            flatShading
+          />
+        </mesh>
+      </Float>
+    </>
   )
 }
+const RotateDEG = Math.PI / 8
 
-const BallCanvas = ({ icon }) => {
+const BallCanvas = ({ name, icon, index }) => {
+  const cameraControlRef = useRef()
+
+  const spinBall = () => {
+    const rotateDeg = index % 2 === 0 ? RotateDEG : -1 * RotateDEG
+    cameraControlRef.current?.rotate(rotateDeg, 0, true)
+  }
+
+  const zoomBall = () => {
+    cameraControlRef.current?.zoom(-0.15, true)
+  }
+
+  const resetBall = () => {
+    setTimeout(() => cameraControlRef.current?.reset(true), 300)
+  }
   return (
-    <Canvas
-      frameloop="demand"
-      dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
-    >
-      <Suspense fallback={<LoadCanvas />}>
-        <OrbitControls enableZoom={false} />
-        <Ball imgUrl={icon} />
-      </Suspense>
+    <div className="flex-col transition-all duration-300 bg-transparent py-2 hover:bg-grey rounded-[20px]">
+      <div
+        className="w-28 h-28"
+        onMouseMove={spinBall}
+        onMouseEnter={zoomBall}
+        onMouseLeave={resetBall}
+      >
+        <Canvas
+          frameloop="demand"
+          dpr={[1, 2]}
+          gl={{ preserveDrawingBuffer: true }}
+        >
+          <Suspense fallback={<LoadCanvas />}>
+            <CameraControls
+              ref={cameraControlRef}
+              enableZoom={false}
+              makeDefault
+            />
+            <Ball imgUrl={icon} />
+          </Suspense>
 
-      <Preload all />
-    </Canvas>
+          <Preload all />
+        </Canvas>
+      </div>
+      <p className="text-secondary text-[14px] text-center">{name}</p>
+    </div>
   )
 }
 

@@ -17,8 +17,7 @@ const SectoinWrapper = (Component: any, nav: string) =>
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.25 }}
-        className="sm:px-16 px-6 sm:py-16 py-10 max-w-7xl mx-auto relative z-0 pointer-events-none"
-        style={{ height: 'calc(100vh - 8rem)' }}
+        className="sm:px-16 px-6 sm:py-12 py-10 max-w-7xl mx-auto relative z-0 pointer-events-none"
       >
         <span
           style={{
