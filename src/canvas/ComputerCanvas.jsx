@@ -4,26 +4,26 @@ import { Preload, useGLTF, CameraControls } from '@react-three/drei'
 import { NavState } from '../constants/type'
 import LoaderCanvas from './LoaderCanvas'
 
-const Violin = () => {
-  const violin = useGLTF('./violin3D/scene.gltf')
+const Computers = () => {
+  const violin = useGLTF('./old_computers/scene.gltf')
 
   return (
     <mesh>
       <hemisphereLight intensity={0.2} groundColor="white" />
-      {/* <spotLight
+      <spotLight
         position={[-2, -2, -2]}
         angle={0.12}
         penumbra={1}
         intensity={1}
         castShadow
         shadow-mapSize={1024}
-      /> */}
+      />
       <pointLight position={[-1, 1, 4]} intensity={1.5} />
       <primitive
         object={violin.scene}
-        scale={0.03}
-        position={[1.2, 1.5, 0]}
-        rotation={[1.5, 0, 0.2]}
+        scale={1.2}
+        position={[0, -2, 1]}
+        rotation={[0, 0, 0]}
       />
     </mesh>
   )
@@ -31,7 +31,7 @@ const Violin = () => {
 
 const DEG45 = Math.PI / 4
 
-export default function ViolinCanvas({ currentNav }) {
+export default function ComputerCanvas({ currentNav }) {
   const cameraControlRef = useRef()
 
   const handleNavChange = (currentNav) => {
@@ -73,7 +73,7 @@ export default function ViolinCanvas({ currentNav }) {
           makeDefault
         />
         <Suspense fallback={<LoaderCanvas />}>
-          <Violin />
+          <Computers />
         </Suspense>
 
         <Preload all />

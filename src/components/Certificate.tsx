@@ -21,14 +21,14 @@ const CertificateCard = ({
   return (
     <motion.div
       variants={fadeIn('right', 'spring', index * 0.5 + 0.35, 0.75)}
-      className="rounded-[20px] w-[280px] bg-transparent shadow-card pointer-events-auto"
+      className="rounded-[20px] w-[320px] bg-transparent shadow-card pointer-events-auto"
     >
       <a href={link} target="_blank">
-        <div className="rounded-[20px] bg-transparent py-1 px-5 min-h-[300px] flex justify-evenly items-center flex-col">
+        <div className="rounded-[20px] bg-transparent py-1 px-1 min-h-[280px] flex justify-evenly items-center flex-col">
           <img
             src={img}
             alt="web-development"
-            className="w-[250px] h-[200px] object-contain"
+            className="w-[300px] h-[250px] object-contain"
           />
 
           <h3 className="text-white text-[12px] font-bold text-center">
@@ -47,7 +47,7 @@ const Certificate = () => {
         <h2 className={styles.sectionHeadText}>Certificates</h2>
       </motion.div>
 
-      <div className="mt-5 flex flex-wrap gap-10">
+      <div className="mt-5 flex flex-wrap gap-5">
         {certificates.map((data, index) => (
           <CertificateCard key={index} index={index} {...data} />
         ))}

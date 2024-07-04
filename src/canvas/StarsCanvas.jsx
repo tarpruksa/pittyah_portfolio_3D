@@ -2,6 +2,7 @@ import { useState, useRef, Suspense, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial, Preload } from '@react-three/drei'
 import * as random from 'maath/random/dist/maath-random.esm'
+import LoaderCanvas from './LoaderCanvas'
 
 const highSpeedFactor = [1, 1.25, 1.5, 1.75, 2]
 const slowSpeedFactor = [9, 9.5, 10, 10.5, 11]
@@ -12,7 +13,7 @@ const Stars = (props) => {
   const ref = useRef()
   const [speedFactor, setSpeedFactor] = useState(10)
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
+    random.inSphere(new Float32Array(3000), { radius: 1.2 })
   )
 
   useFrame((state, delta) => {
@@ -49,7 +50,7 @@ const StarsCanvas = (props) => {
   return (
     <div className="w-full h-screen fixed z-[-1]">
       <Canvas camera={{ position: [0, 0, 1] }}>
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoaderCanvas />}>
           <Stars {...props} />
         </Suspense>
 

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { fadeIn, textVariant } from '../constants/utils'
 import { styles } from '../style'
 
-const Work = () => {
+const Skill = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -24,4 +24,4 @@ const Work = () => {
   )
 }
 
-export default SectionWrapper(Work, getNavString(NavState.Skill))
+export default SectionWrapper(Skill, getNavString(NavState.Skill))

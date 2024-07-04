@@ -9,7 +9,7 @@ const SectoinWrapper = (Component: any, nav: string) =>
           hidden: {},
           show: {
             transition: {
-              staggerChildren: 0.2,
+              staggerChildren: 1,
               delayChildren: 0,
             },
           },
@@ -17,8 +17,20 @@ const SectoinWrapper = (Component: any, nav: string) =>
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.25 }}
-        className="sm:px-10 px-6 sm:py-2 py-2 max-w-7xl mx-auto absolute top-0 z-1 pointer-events-none"
+        className="sm:px-16 px-6 sm:py-16 py-10 max-w-7xl mx-auto relative z-0 pointer-events-none"
+        style={{ height: 'calc(100vh - 8rem)' }}
       >
+        <span
+          style={{
+            marginTop: '-100px',
+            paddingBottom: '100px',
+            display: 'block',
+          }}
+          id={nav}
+        >
+          &nbsp;
+        </span>
+
         <Component />
       </motion.section>
     )
