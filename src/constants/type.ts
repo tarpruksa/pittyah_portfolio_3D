@@ -13,6 +13,12 @@ export type CertificateData = {
   date: string
 }
 
+export enum BounceState {
+  Initial,
+  Click,
+  ClickEnd,
+}
+
 export type DirectionType = 'left' | 'right' | 'up' | 'down' | null
 export type TransitionType = 'spring' | 'tween' | 'inertia' | null
 

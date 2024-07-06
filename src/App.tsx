@@ -9,26 +9,21 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div>
-        <Navbar currentNav={currentNav} setCurrentNav={setCurrentNav} />
-        {/* <ViolinCanvas currentNav={currentNav} />
-        <StarsCanvas currentNav={currentNav} /> */}
-        {/* <ComputerCanvas currentNav={currentNav} /> */}
-        {/* <div className="fixed w-full h-screen z-[-2] galaxy-bg"></div> */}
-        <div className="relative z-0 bg-primary">
-          <About />
-          <Work />
-          <Skill />
-          <Certificate />
-          <Contact />
-          {/* <Routes>
+      <div className="relative bg-primary">
+        {/* <Navbar currentNav={currentNav} setCurrentNav={setCurrentNav} /> */}
+
+        <About />
+        <Work />
+        <Skill />
+        <Certificate />
+        <Contact />
+        {/* <Routes>
             <Route path="about" element={<About />} />
             <Route path="work" element={<Work />} />
             <Route path="skill" element={<Skill />} />
             <Route path="certificate" element={<Certificate />} />
             <Route path="contact" element={<Contact />} />
           </Routes> */}
-        </div>
       </div>
     </BrowserRouter>
   )

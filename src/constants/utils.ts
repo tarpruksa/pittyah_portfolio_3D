@@ -1,13 +1,15 @@
 import { DirectionType, TransitionType } from './type'
 
-export const textVariant = () => {
+export const textVariant = (direction: DirectionType = 'down') => {
   return {
     hidden: {
-      y: -50,
+      y: direction === 'down' ? -50 : direction === 'up' ? 50 : 0,
+      x: direction === 'left' ? 20 : direction === 'right' ? -20 : 0,
       opacity: 0,
     },
     show: {
       y: 0,
+      x: 0,
       opacity: 1,
       transition: {
         type: 'spring',

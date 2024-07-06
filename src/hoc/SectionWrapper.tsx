@@ -9,15 +9,15 @@ const SectoinWrapper = (Component: any, nav: string) =>
           hidden: {},
           show: {
             transition: {
-              staggerChildren: 1,
+              staggerChildren: 0.5,
               delayChildren: 0,
             },
           },
         }}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.25 }}
-        className="sm:px-16 px-6 sm:py-12 py-10 max-w-7xl mx-auto relative z-0 pointer-events-none"
+        viewport={{ once: true, amount: 0.25 }}
+        className="sm:px-16 px-6 sm:pb-10 pb-10 max-w-7xl mx-auto relative z-0 pointer-events-none"
       >
         <span
           style={{
