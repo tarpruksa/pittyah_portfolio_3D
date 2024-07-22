@@ -16,6 +16,10 @@ import c from './skill/c.png'
 import netmvc from './skill/netmvc.png'
 import azuredevops from './skill/azuredevops.svg'
 import p from './p.png'
+import sevenpeaks from './sevenpeaks.svg'
+import lex247logo from './lex247logo.png'
+import lex247 from './lex247.png'
+import codescreen from './codescreen.jpg'
 
 export {
   certificate_meta,
@@ -36,4 +40,8 @@ export {
   netmvc,
   azuredevops,
   p,
+  sevenpeaks,
+  lex247logo,
+  lex247,
+  codescreen,
 }

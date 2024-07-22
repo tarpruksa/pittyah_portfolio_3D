@@ -18,12 +18,35 @@ import {
 } from '../assets'
 import { CertificateData, NavState, SkillType } from './type'
 
-export const navData = [
-  { id: NavState.About, title: NavState[NavState.About] },
-  { id: NavState.Work, title: NavState[NavState.Work] },
-  { id: NavState.Skill, title: NavState[NavState.Skill] },
-  { id: NavState.Certificate, title: NavState[NavState.Certificate] },
-  { id: NavState.Contact, title: NavState[NavState.Contact] },
+// export const navData = [
+//   { id: NavState.About, title: NavState[NavState.About] },
+//   { id: NavState.Work, title: NavState[NavState.Work] },
+//   { id: NavState.Skill, title: NavState[NavState.Skill] },
+//   { id: NavState.Certificate, title: NavState[NavState.Certificate] },
+//   { id: NavState.Contact, title: NavState[NavState.Contact] },
+// ]
+
+export const navCircle = [
+  {
+    title: 'WHAT I DO',
+    navRoute: NavState.Passion,
+    position: 'top-[10%] left-[20%]',
+  },
+  {
+    title: 'EXPERIENCES',
+    navRoute: NavState.Experience,
+    position: 'top-[40%] left-[20%]',
+  },
+  {
+    title: 'SKILLS & CERTIFICATES',
+    navRoute: NavState.SkillCer,
+    position: 'top-[10%] right-[20%]',
+  },
+  {
+    title: 'CONTACT ME',
+    navRoute: NavState.Contact,
+    position: 'top-[40%] right-[20%]',
+  },
 ]
 
 export const certificates = [

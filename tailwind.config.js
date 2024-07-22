@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#050816",
+        "main-blue": "#265dff",
         secondary: "#aaa6c3",
         tertiary: "#151030",
         "black-100": "#100d25",
@@ -20,9 +21,9 @@ module.exports = {
       screens: {
         xs: "450px",
       },
-      backgroundImage: {
-        "hero-pattern": "url('/src/assets/herobg.png')",
-      },
+      dropShadow: {
+        blue: "0 0 20px #265dff"
+      }
     },
   },
   plugins: [],

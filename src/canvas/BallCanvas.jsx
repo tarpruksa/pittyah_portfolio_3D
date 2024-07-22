@@ -1,9 +1,8 @@
-import React, { useState, Suspense, useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import React, { Suspense, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
 import {
   Decal,
   Float,
-  OrbitControls,
   Preload,
   useTexture,
   CameraControls,
@@ -13,6 +12,7 @@ import LoadCanvas from './LoaderCanvas'
 const Ball = (props) => {
   const meshRef = useRef()
   const [decal] = useTexture([props.imgUrl])
+
   return (
     <>
       <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
@@ -28,6 +28,13 @@ const Ball = (props) => {
           />
           <Decal
             position={[0, 0, 1]}
+            rotation={[2 * Math.PI, 0, 6.25]}
+            scale={1}
+            map={decal}
+            flatShading
+          />
+          <Decal
+            position={[0, 0, -1]}
             rotation={[2 * Math.PI, 0, 6.25]}
             scale={1}
             map={decal}
@@ -56,9 +63,9 @@ const BallCanvas = ({ name, icon, index }) => {
     setTimeout(() => cameraControlRef.current?.reset(true), 300)
   }
   return (
-    <div className="flex-col transition-all duration-300 bg-transparent py-2 hover:bg-grey rounded-[20px]">
+    <div className="flex-col z-0 relative transition-all duration-300 bg-transparent py-2 rounded-[20px] hoverCard">
       <div
-        className="w-28 h-28"
+        className="w-32 h-32"
         onMouseMove={spinBall}
         onMouseEnter={zoomBall}
         onMouseLeave={resetBall}
@@ -80,7 +87,7 @@ const BallCanvas = ({ name, icon, index }) => {
           <Preload all />
         </Canvas>
       </div>
-      <p className="text-secondary text-[14px] text-center">{name}</p>
+      <p className="text-secondary text-center">{name}</p>
     </div>
   )
 }

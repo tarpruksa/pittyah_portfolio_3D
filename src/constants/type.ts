@@ -1,9 +1,16 @@
 export enum NavState {
-  About,
-  Work,
-  Skill,
-  Certificate,
-  Contact,
+  Home = 'home',
+  Passion = 'passion',
+  Experience = 'experience',
+  SkillCer = 'skillcer',
+  Contact = 'contact',
+  Resume = 'resume',
+}
+
+export enum AnimationType {
+  Center = 'center',
+  Left = 'left',
+  Right = 'right',
 }
 
 export type CertificateData = {
