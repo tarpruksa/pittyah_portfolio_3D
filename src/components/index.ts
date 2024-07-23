@@ -3,7 +3,7 @@ import Certificate from './Certificate'
 import Work from './Work'
 import Skill from './Skill'
 import Contact from './Contact'
-import About from './About'
+import Home from './Home'
 import Passion from './Passion'
 
-export { Certificate, Passion, Work, About, Skill, Contact }
+export { Certificate, Passion, Work, Home, Skill, Contact }

@@ -80,7 +80,7 @@ const About = ({ setCurrentNav }) => {
   return (
     <>
       <motion.div
-        variants={{ center: { x: 0 }, left: { x: -400 }, right: { x: 400 } }}
+        variants={{ center: { x: 0 }, left: { x: -500 }, right: { x: 500 } }}
         transition={{ type: 'tween' }}
         animate={animation}
       >
@@ -131,7 +131,11 @@ const About = ({ setCurrentNav }) => {
               })}
             </>
           ) : (
-            <div className={`absolute top-[50%] ${animation}-[35%]`}>
+            <div
+              className={`absolute top-[50%] ${
+                animation === AnimationType.Left ? 'left-[35%]' : 'right-[35%]'
+              }`}
+            >
               <div
                 className="circle-button return"
                 onClick={() => handleSelect(NavState.Home)}

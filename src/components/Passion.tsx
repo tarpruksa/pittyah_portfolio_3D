@@ -4,6 +4,8 @@ import SectionWrapper from '../hoc/SectionWrapper'
 import { styles } from '../style'
 import LaptopCanvas from '../canvas/LaptopCanvas'
 import { EaselCanvas } from '../canvas'
+import { fadeIn } from '../constants/utils'
+import { motion } from 'framer-motion'
 
 const passion = [
   {
@@ -18,22 +20,29 @@ const passion = [
     detail:
       "Beyond front-end development, I'm a JAMstack specialist. Cloud CMS platforms, lambda functions, site-generators - Whatever your requirements, I'm happy to help you plan, build and deliver a JAMstack project that's fast, secure and reliable. text text text text",
   },
-  // { title: 'Musician', element: <></> },
+  {
+    title: 'Musician',
+    element: <></>,
+    detail:
+      'Also a violinist, 10+ years of orchestra player. As i do it on part time, this also sharpen my brain and keep my focus fresh',
+    flex: 'flex-2 h-[30vh]',
+  },
 ]
 
 const Passion = () => {
   return (
-    <div className="min-h-[50vh] flex-col flex-center mb-48">
-      <h2 className={styles.sectionHeadText}>What I do</h2>
+    <div>
+      <h2 className={`${styles.sectionHeadText} text-right`}>What I do</h2>
       <div className="flex-start gap-10 flex-wrap w-full">
-        {passion.map((p) => {
+        {passion.map((p, index) => {
           return (
-            <div className="flex-center justify-end flex-col flex-1 border-grey p-8 h-[500px] relative">
+            <motion.div
+              variants={fadeIn('right', 'spring', index * 0.5 + 0.35, 0.75)}
+              className={`flex-center justify-end flex-col flex-1 border-grey p-8 min-w-[400px] h-[50vh] relative ${p.flex}`}
+            >
               <div className="absolute h-full w-full top-0">{p.element}</div>
-              {/* <div className="border-blue bg-blue circle h-32 w-32"></div> */}
-              {/* <p className={styles.sectionSubText}>{p.title}</p> */}
               <p>{p.detail}</p>
-            </div>
+            </motion.div>
           )
         })}
       </div>

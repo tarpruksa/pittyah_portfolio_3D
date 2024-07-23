@@ -4,6 +4,9 @@ import { AnimationType } from '../constants/type'
 
 const SectoinWrapper = (Component: any, position: AnimationType) =>
   function HOC() {
+    let className = `w-[50%] absolute top-[100px] ${
+      position === AnimationType.Left ? 'left-[5%]' : 'right-[5%]'
+    } pointer-events-none`
     return (
       <motion.section
         variants={{
@@ -18,7 +21,7 @@ const SectoinWrapper = (Component: any, position: AnimationType) =>
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        className={`w-[45%] absolute top-[100px] ${position}-[5%] pointer-events-none`}
+        className={className}
       >
         <Component />
       </motion.section>

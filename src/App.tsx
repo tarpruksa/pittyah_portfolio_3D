@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavState } from './constants/type'
-import { Certificate, Work, About, Skill, Contact, Passion } from './components'
+import { Certificate, Work, Home, Skill, Contact, Passion } from './components'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export default function App() {
@@ -9,9 +9,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="relative bg-primary">
-        {/* <Navbar currentNav={currentNav} setCurrentNav={setCurrentNav} /> */}
-
-        <About setCurrentNav={setCurrentNav} />
+        <Home setCurrentNav={setCurrentNav} />
         {currentNav === NavState.Passion && <Passion />}
         {currentNav === NavState.Experience && <Work />}
         {currentNav === NavState.Contact && <Contact />}

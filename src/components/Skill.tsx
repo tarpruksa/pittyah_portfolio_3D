@@ -14,7 +14,7 @@ enum SectionType {
 
 const Skill = () => {
   return (
-    <div className="flex flex-wrap justify-start gap-10">
+    <div className="flex flex-wrap justify-center gap-10">
       {skills.map((skill, index) => (
         <div key={skill.name}>
           <BallCanvas name={skill.name} icon={skill.icon} index={index} />
