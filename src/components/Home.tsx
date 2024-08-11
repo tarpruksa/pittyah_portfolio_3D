@@ -29,7 +29,7 @@ const MainText = ({ setHoverHighlight }) => {
       </motion.div>
 
       <motion.div
-        variants={textVariant('right', 0.8, 1.2)}
+        variants={textVariant('right', 1.2, 0.8)}
         animate="show"
         initial="hidden"
         className="text-center"

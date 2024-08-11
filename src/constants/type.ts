@@ -18,6 +18,9 @@ export type CertificateData = {
   img: string
   link: string
   date: string
+  span: number
+  company: string
+  details: string[]
 }
 
 export enum BounceState {

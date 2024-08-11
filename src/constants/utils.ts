@@ -2,8 +2,8 @@ import { DirectionType, TransitionType } from './type'
 
 export const textVariant = (
   direction: DirectionType = 'down',
-  duration: number = 1.2,
-  delay: number = 0.6
+  delay: number = 0.6,
+  duration: number = 1.2
 ) => {
   return {
     hidden: {

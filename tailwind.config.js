@@ -22,7 +22,8 @@ module.exports = {
         xs: "450px",
       },
       dropShadow: {
-        blue: "0 0 20px #265dff"
+        "white-md": "0 0px 5px #dadada",
+        "white-lg": "0 0px 8px #dadada",
       }
     },
   },

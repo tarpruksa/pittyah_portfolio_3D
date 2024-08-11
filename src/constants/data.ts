@@ -15,6 +15,12 @@ import {
   threejs,
   c,
   netmvc,
+  meta,
+  ust,
+  google,
+  certificate_hardware,
+  ibm,
+  certificate_cloud,
 } from '../assets'
 import { CertificateData, NavState, SkillType } from './type'
 
@@ -51,22 +57,69 @@ export const navCircle = [
 
 export const certificates = [
   {
-    title: 'Meta Front-End Developer by Meta',
+    title: 'Front-End Developer by Meta',
     img: certificate_meta,
     link: 'https://coursera.org/share/6261583e3f19c485b3a4edc5a731dc3f',
-    date: '19th January 2024',
+    date: '19 January 2024',
+    span: 2,
+    company: meta,
+    details: [
+      'Programming with JavaScript',
+      'HTML and CSS in depth',
+      'React Basics',
+      'Advanced React',
+      'Principles of UX/UI Design',
+      'Coding Interview Preparation',
+    ],
   },
   {
-    title: 'Front-End Web Developer with React',
-    img: certificate_react,
-    link: 'https://coursera.org/share/d259a4611fca7ff1facb2ec31ee94096',
-    date: '24th August 2022',
-  },
-  {
-    title: 'Google IT Automation with Python by Google',
+    title: 'IT Automation with Python by Google',
     img: certificate_google,
     link: 'https://coursera.org/share/56ace58308d7f6d4ebe0499c7020a2cc',
-    date: '23th June 2022',
+    date: '23 June 2022',
+    span: 2,
+    company: google,
+    details: [
+      'Crash Course on Python',
+      'Introduction to Git and GitHub',
+      'Python with the Operating System',
+      'Troubleshooting and Debugging Techniques',
+      'Configuration Management and the Cloud',
+      'Automating Real-World Tasks with Python',
+    ],
+  },
+  {
+    title: 'React Web Development',
+    img: certificate_react,
+    link: 'https://coursera.org/share/d259a4611fca7ff1facb2ec31ee94096',
+    date: '24 August 2022',
+    company: ust,
+    details: [
+      'React Basics',
+      'Advanced React',
+      'Build your first react website',
+    ],
+  },
+  {
+    title: 'Introduction to Hardware and Operating Systems',
+    img: certificate_hardware,
+    link: 'https://coursera.org/share/851b2e682b7b8f01ee689fff4f5cbb1b',
+    date: '27 June 2022',
+    company: ibm,
+    details: [
+      'Demonstrate an understanding of operating system fundamentals.',
+      'Explain basic workstation setup, locate operating system settings, and identify good troubleshooting practices.',
+    ],
+  },
+  {
+    title: 'Introduction to Cloud Computing',
+    img: certificate_cloud,
+    link: 'https://coursera.org/share/bee8666ae22615fe9d60839938bd6a0d',
+    date: '30 June 2022',
+    company: ibm,
+    details: [
+      'Define cloud computing and explain essential characteristics, history, the business case for cloud, and the emerging technologies enabled by cloud',
+    ],
   },
 ] as CertificateData[]
 
