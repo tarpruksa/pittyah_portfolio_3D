@@ -110,12 +110,12 @@ const SkillAndCertificate = () => {
     <div className="border-grey p-8 pt-0 rounded-[10px] relative">
       <motion.div
         variants={textVariant('down', 0.2, 0.6)}
-        className="flex justify-around gap-8 mt-[-60px] w-full pointer-events-auto z-0"
+        className="flex justify-around gap-8 mt-[-60px] w-full z-0"
       >
         {header.map((val, index) => {
           return (
             <button
-              className={`${styles.sectionHeadText} w-1/2 p-6 ${
+              className={`header ${styles.sectionHeadText} w-1/2 p-6 ${
                 select === val.select ? 'active' : ''
               }`}
               onClick={() => handleSelect(val.select)}

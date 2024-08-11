@@ -6,7 +6,7 @@ const SectoinWrapper = (Component: any, position: AnimationType) =>
   function HOC() {
     let className = `w-[50%] absolute top-[100px] ${
       position === AnimationType.Left ? 'left-[5%]' : 'right-[5%]'
-    } pointer-events-none`
+    } pointer-events-auto`
     return (
       <motion.section
         variants={{

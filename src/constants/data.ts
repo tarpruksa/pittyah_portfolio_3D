@@ -24,6 +24,8 @@ import {
 } from '../assets'
 import { CertificateData, NavState, SkillType } from './type'
 
+export const validEmailReg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
 // export const navData = [
 //   { id: NavState.About, title: NavState[NavState.About] },
 //   { id: NavState.Work, title: NavState[NavState.Work] },

@@ -40,11 +40,24 @@ button {
   z-index: 0;
   filter: drop-shadow(0 0px 8px #dadada);
 }
-button:hover, button.active, button:focus {
+button.header:hover, button.header.active, button.header:focus {
   color: var(--primary);
 }
 
-button::before {
+button.send {
+  border-radius: 10px;
+  filter:none;
+}
+
+button.send.active {
+  filter: drop-shadow(0 0px 4px #dadada);
+}
+
+button.send:hover {
+  filter: drop-shadow(0 0px 8px #dadada);
+}
+
+button.header::before {
   content: '';
   position: absolute;
   background-color: var(--primary);
@@ -546,4 +559,31 @@ div[clickbounce='1'] {
 
 .easel-decor {
   background-color: var(--purple-bg);
+}
+
+.loader{
+  position:relative;
+  width:50px;
+  height:50px;
+}
+.loader hr{
+  border:0;
+  margin:0;
+  width:20%;
+  height:20%;
+  position:absolute;
+  border-radius:50%;
+  animation:spin 2s ease infinite
+}
+
+.loader :first-child{background:#19A68C;animation-delay:-1.5s}
+.loader :nth-child(2){background:#F63D3A;animation-delay:-1s}
+.loader :nth-child(3){background:#FDA543;animation-delay:-0.5s}
+.loader :last-child{background:#193B48}
+
+@keyframes spin{
+  0%,100%{transform:translate(0)}
+  25%{transform:translate(160%)}
+  50%{transform:translate(160%, 160%)}
+  75%{transform:translate(0, 160%)}
 }
