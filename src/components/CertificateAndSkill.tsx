@@ -36,14 +36,19 @@ const CertificateCard = ({
     <>
       <div className="flex flex-col gap-4">
         <img src={img} className="w-full object-contain" />
-        <div className="flex-center gap-3 self-center">
-          <a href={link} target="_blank" className="pointer-events-auto">
-            <div className="rounded-full place-content-center bg-slate-300 p-2 w-11 h-11 cursor-pointer drop-shadow-white-md transition hover:scale-110 hover:bg-slate-100">
-              <img src={company} className="w-8 max-h-8" />
-            </div>
-          </a>
-          <p className="text-slate-300 text-center text-[1rem]">{title}</p>
-        </div>
+
+        <a
+          href={link}
+          target="_blank"
+          className="group flex-center gap-3 self-center pointer-events-auto"
+        >
+          <div className="rounded-full place-content-center bg-slate-300 p-2 min-w-11 min-h-11 cursor-pointer drop-shadow-white-md transition group-hover:scale-110 group-hover:bg-slate-100">
+            <img src={company} className="w-8 max-h-8" />
+          </div>
+          <p className="text-slate-300 text-center text-[1rem] group-hover:underline">
+            {title}
+          </p>
+        </a>
 
         <ul className="text-[0.8rem] self-start">
           {details.map((i, index) => {
@@ -62,11 +67,11 @@ const CertificateCard = ({
   )
 }
 
-const Certificate = ({ renderFirstTime }) => {
-  const getDivClass = (span) => {
+const Certificate = ({ renderFirstTime }: { renderFirstTime: boolean }) => {
+  const getDivClass = (span: number) => {
     return `rounded-[20px] ${
       span === 2 ? 'basis-[48.5%]' : 'basis-[31.5%]'
-    } p-4 bg-slate-900 relative flex justify-between flex-col gap-3`
+    } p-4 bg-slate-900 relative flex justify-between flex-col gap-3 border border-slate-700`
   }
 
   return (
@@ -115,6 +120,7 @@ const SkillAndCertificate = () => {
         {header.map((val, index) => {
           return (
             <button
+              key={index}
               className={`header ${styles.sectionHeadText} w-1/2 p-6 ${
                 select === val.select ? 'active' : ''
               }`}
