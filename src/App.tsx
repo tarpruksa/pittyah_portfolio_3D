@@ -1,20 +1,40 @@
-import React, { useState } from 'react'
-import { NavState } from './constants/type'
-import { Work, Home, CertificateAndSkill, Contact, Passion } from './components'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { useState } from 'react'
+import {
+  Work,
+  Home,
+  Contact,
+  Passion,
+  Navbar,
+  Project,
+  Skill,
+  Certificate,
+  Footer,
+} from './components'
+import { BrowserRouter } from 'react-router-dom'
 
 export default function App() {
-  const [currentNav, setCurrentNav] = useState<NavState>(NavState.Home)
+  const [openContent, setOpenContent] = useState<boolean>(false)
 
   return (
     <BrowserRouter>
-      <div className="relative bg-primary">
-        <Home setCurrentNav={setCurrentNav} />
-        {currentNav === NavState.Passion && <Passion />}
-        {currentNav === NavState.Experience && <Work />}
-        {currentNav === NavState.Contact && <Contact />}
-        {currentNav === NavState.SkillCer && <CertificateAndSkill />}
-        {/* {currentNav === NavState.Contact && <Contact />} */}
+      <Navbar />
+      <div className="bg-primary">
+        <Home setOpenContent={setOpenContent} />
+        {openContent && (
+          <div
+            className="px-6 md:px-14 lg:px-20 xl:px-32 2xl:w-[52%] 2xl:px-0 
+                     relative 2xl:ml-auto 2xl:mr-20 
+                     mt-[-60px] pb-16 md:py-16"
+          >
+            <Passion />
+            <Work />
+            <Skill />
+            <Project />
+            <Certificate />
+            <Contact />
+            <Footer />
+          </div>
+        )}
       </div>
     </BrowserRouter>
   )

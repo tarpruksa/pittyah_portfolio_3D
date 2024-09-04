@@ -1,24 +1,51 @@
+import { IconType } from 'react-icons'
+
 export enum NavState {
   Home = 'home',
   Passion = 'passion',
+  Project = 'project',
   Experience = 'experience',
-  SkillCer = 'skillcer',
+  Certificate = 'certificate',
   Contact = 'contact',
-  Resume = 'resume',
 }
 
-export enum AnimationType {
-  Center = 'center',
-  Left = 'left',
-  Right = 'right',
+export enum PassionType {
+  Design = 'design',
+  Build = 'build',
+  Connect = 'connect',
 }
 
-export type CertificateData = {
+export type PassionData = {
   title: string
+  detail: string
+  type: PassionType
+}
+
+export type CertificateData = BaseData & {
   img: string
-  link: string
-  date: string
   span: number
+}
+
+export type LinkData = {
+  title: string
+  link: string
+  icon: IconType
+}
+
+export type ExperienceData = BaseData & {
+  icon: string
+  stacks: string[]
+}
+
+export type ProjectData = BaseData & {
+  imgs: string[]
+  stacks: string[]
+  github: string
+}
+type BaseData = {
+  title: string
+  date: string
+  link?: string
   company: string
   details: string[]
 }
@@ -31,18 +58,6 @@ export enum BounceState {
 
 export type DirectionType = 'left' | 'right' | 'up' | 'down' | null
 export type TransitionType = 'spring' | 'tween' | 'inertia' | null
-
-export const getNavString = (input: NavState) => {
-  return NavState[input].toLowerCase()
-}
-
-export type NavStateType = {
-  currentNav: NavState
-}
-
-export type IndexType = {
-  index: number
-}
 
 export type SkillType = {
   name: string

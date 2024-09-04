@@ -1,12 +1,8 @@
-import React from 'react'
 import { motion } from 'framer-motion'
-import { AnimationType } from '../constants/type'
+import { NavState } from '../constants/type'
 
-const SectoinWrapper = (Component: any, position: AnimationType) =>
+const SectoinWrapper = (Component: any, idName: NavState | null) =>
   function HOC() {
-    let className = `w-[50%] absolute top-[100px] ${
-      position === AnimationType.Left ? 'left-[5%]' : 'right-[5%]'
-    } pointer-events-auto`
     return (
       <motion.section
         variants={{
@@ -21,8 +17,13 @@ const SectoinWrapper = (Component: any, position: AnimationType) =>
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        className={className}
+        className={`${idName ? 'my-36' : ''}`}
       >
+        {idName && (
+          <span className="absolute -mt-28" id={idName}>
+            &nbsp;
+          </span>
+        )}
         <Component />
       </motion.section>
     )

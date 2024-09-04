@@ -1,3 +1,4 @@
+import { IoMdMail } from 'react-icons/io'
 import {
   certificate_meta,
   certificate_google,
@@ -21,41 +22,149 @@ import {
   certificate_hardware,
   ibm,
   certificate_cloud,
+  lex247_small,
+  sevenpeaks_small,
+  smartcranes,
+  t_film,
+  artshop,
+  artshop2,
+  t_film2,
 } from '../assets'
-import { CertificateData, NavState, SkillType } from './type'
+import {
+  CertificateData,
+  ExperienceData,
+  LinkData,
+  NavState,
+  PassionData,
+  PassionType,
+  ProjectData,
+  SkillType,
+} from './type'
+import { FaGithub, FaInstagramSquare, FaLinkedin } from 'react-icons/fa'
+
+export const Mobile = 768
+export const XLDesktop = 1536
 
 export const validEmailReg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
 
-// export const navData = [
-//   { id: NavState.About, title: NavState[NavState.About] },
-//   { id: NavState.Work, title: NavState[NavState.Work] },
-//   { id: NavState.Skill, title: NavState[NavState.Skill] },
-//   { id: NavState.Certificate, title: NavState[NavState.Certificate] },
-//   { id: NavState.Contact, title: NavState[NavState.Contact] },
-// ]
-
-export const navCircle = [
-  {
-    title: 'WHAT I DO',
-    navRoute: NavState.Passion,
-    position: 'top-[10%] left-[20%]',
-  },
-  {
-    title: 'EXPERIENCES',
-    navRoute: NavState.Experience,
-    position: 'top-[40%] left-[20%]',
-  },
-  {
-    title: 'SKILLS & CERTIFICATES',
-    navRoute: NavState.SkillCer,
-    position: 'top-[10%] right-[20%]',
-  },
-  {
-    title: 'CONTACT ME',
-    navRoute: NavState.Contact,
-    position: 'top-[40%] right-[20%]',
-  },
+export const navData = [
+  { id: NavState.Passion, title: 'About' },
+  { id: NavState.Experience, title: 'Works' },
+  { id: NavState.Project, title: 'Projects' },
+  { id: NavState.Certificate, title: 'Certificates' },
+  { id: NavState.Contact, title: 'Contact' },
 ]
+
+export const linkToProfiles = [
+  { title: 'Github', icon: FaGithub, link: 'https://github.com/tarpruksa' },
+  {
+    title: 'Linkedin',
+    icon: FaLinkedin,
+    link: 'https://www.linkedin.com/in/pittayah-pruksacholavit-7798a0228',
+  },
+  {
+    title: 'Instragram',
+    icon: FaInstagramSquare,
+    link: 'https://www.instagram.com/tarpruksa/',
+  },
+  // { title: 'Mail', icon: IoMdMail, link: '' },
+] as LinkData[]
+
+export const passion = [
+  {
+    title: 'Design',
+    detail:
+      'Crafting Experiences - I love creating intuitive, beautiful interfaces that make users happy and engaged.',
+    type: PassionType.Design,
+  },
+  { title: 'Gap' },
+  {
+    title: 'Build',
+    detail:
+      'Creating Solutions - I enjoy building strong, scalable applications that look good and work great.',
+    type: PassionType.Build,
+  },
+  { title: 'Gap' },
+  {
+    title: 'Connect',
+    detail:
+      'Bridging Technologies - I’m all about connecting the right tech to make digital experiences smooth and interactive.',
+    type: PassionType.Connect,
+  },
+] as PassionData[]
+
+export const experiences = [
+  {
+    title: 'Frontend Web Developer',
+    company: 'Seven Peaks Software',
+    icon: sevenpeaks_small,
+    date: 'June 2023 - Present',
+    link: 'https://sevenpeakssoftware.com/',
+    details: [
+      'Successfully upgraded applications to comply with EU GDPR standards, implementing advanced data masking and encryption techniques to safeguard sensitive information.',
+      'Connected and integrated to Outlook 365 APIs, enabling seamless access to calendars, calls, and emails for over 100+ users, enhancing productivity and user experience.',
+      'Designed a server-side React component module supporting nested objects using recursive methods, improving code efficiency and maintainability.',
+      'Consistently delivered high-quality features and enhancements ahead of sprint deadlines, earning recognition and praise from the management team for exceptional performance.',
+      'Actively participated in code reviews, providing constructive feedback to peers and fostering a collaborative development environment.',
+    ],
+    stacks: ['React', 'Redux', 'Typescript', 'C#', '.NET MVC', 'LINQ'],
+  },
+  {
+    title: 'Frontend Web Developer',
+    company: 'LEX247',
+    icon: lex247_small,
+    date: 'June 2022 - June 2023',
+    link: 'https://lex247.com/',
+    details: [
+      'Enhanced application performance by 30% by upgrading from ASP.NET Core MVC to React.js.',
+      'Developed a new Control Panel for admin users, enabling micro-management of over 20 different collections within the system.',
+      'Implemented server-side pagination, searchable and sortable React tables, and multi-language form fields using React Form Hook.',
+      'Delivered new features for an enterprise law firm with 500+ daily users, including:',
+      "-Testamentsförvaring - A feature designed to assist lawyers in managing their client's testaments.",
+      '-Time Bank - A comprehensive solution for managing insurance and time value.',
+    ],
+    stacks: ['React', 'Typescript', 'Javascript', 'HTML & CSS', 'JQuery'],
+  },
+  {
+    title: 'Electrical Engineer',
+    company: 'Smart Cranes',
+    icon: smartcranes,
+    date: 'Aug 2017 - June 2022',
+    details: [
+      'Designed and optimized electrical circuits for industrial-grade wireless remote control systems, contributing to enhanced operational efficiency and reliability.',
+      'Managed the entire lifecycle of hardware and software projects, from conceptual design and component selection to configuration and programming, ensuring seamless project execution.',
+      'Provided expert technical support and service coordination, leading on-site job execution to meet client needs and exceed performance expectations.',
+    ],
+  },
+] as ExperienceData[]
+
+export const projects = [
+  {
+    title: 'T-film',
+    imgs: [t_film, t_film2],
+    link: 'https://t-film.netlify.app',
+    github: 'https://github.com/tarpruksa/T-film',
+    stacks: ['React', 'Redux', 'Alan AI'],
+    details: [
+      'A collection of up-to-date movies details, connected to IMDb APIs.',
+      'Voice recognition command by Alan AI (can use to navigate through the site).',
+      'Login and Autheticated with IMDB.',
+      'Add to favourites, Save to watch later.',
+    ],
+  },
+  {
+    title: 'Art Shop',
+    imgs: [artshop, artshop2],
+    github: 'https://github.com/tarpruksa/Art-Shop',
+    stacks: ['React', 'Next', 'Strip', 'Sanity'],
+    details: [
+      'An ecommerce website, created with React and testnet payment checkout by stripe.',
+      'Scalable and admin friendly to expand, add more items to the shop.',
+      'Cart Item Management.',
+      'Checkout payment.',
+    ],
+  },
+] as ProjectData[]
 
 export const certificates = [
   {
