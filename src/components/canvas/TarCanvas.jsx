@@ -7,7 +7,7 @@ import LoaderCanvas from './LoaderCanvas'
 import { useWindowSize } from '../../hook/useWindowSize'
 import { Mobile } from '../../constants/data'
 
-function Tar({ isMobile }) {
+function Tar({ isMobile, changeColor }) {
   const [enter, setEnter] = useState(false)
   const mesh = useRef()
   const lightBlue = useRef()
@@ -50,7 +50,7 @@ function Tar({ isMobile }) {
           penumbra={1}
           decay={2}
           focus={1}
-          color="#00478d"
+          color={changeColor ? '#2E073F' : '#00478d'}
           shadow-mapSize={1024}
           castShadow
         />
@@ -64,7 +64,7 @@ function Tar({ isMobile }) {
           penumbra={1}
           decay={2}
           focus={1}
-          color="#00cfda"
+          color={changeColor ? '#4500da' : '#00cfda'}
           shadow-mapSize={1024}
           castShadow
         />
@@ -78,7 +78,7 @@ function Tar({ isMobile }) {
           penumbra={1}
           decay={2}
           focus={1}
-          color="#003f88"
+          color={changeColor ? '#a945e7' : '#003f88'}
           shadow-mapSize={1024}
           castShadow
         />
@@ -87,7 +87,7 @@ function Tar({ isMobile }) {
   )
 }
 
-export default function TarCanvas() {
+export default function TarCanvas({ changeColor }) {
   const windowSize = useWindowSize()
   return (
     <Canvas>
@@ -102,7 +102,7 @@ export default function TarCanvas() {
           shadow-mapSize={1024}
           castShadow
         />
-        <Tar isMobile={windowSize <= Mobile} />
+        <Tar isMobile={windowSize <= Mobile} changeColor={changeColor} />
       </Suspense>
 
       <Preload all />

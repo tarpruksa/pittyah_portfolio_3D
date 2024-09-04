@@ -12,6 +12,9 @@ const ProflieLink = () => {
           href={l.link}
           key={index}
           target="_blank"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
           variants={zoomIn(index * 0.2 + 0.2, 0.2)}
         >
           <l.icon

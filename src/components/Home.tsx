@@ -18,7 +18,7 @@ const MainText = ({
       onMouseLeave={() => {
         setHoverHighlight(false)
       }}
-      className="cursor-default pointer-events-auto"
+      className="cursor-default pointer-events-auto z-50"
     >
       <motion.div
         variants={textVariant('down', 2.6, 0.6)}
@@ -44,7 +44,7 @@ const MainText = ({
   )
 }
 
-const Home = ({ setOpenContent }: { setOpenContent(prop: boolean): void }) => {
+const Home = () => {
   const [hoverHighlight, setHoverHighlight] = useState<boolean>(false)
   const [clickBounce, setClickBounce] = useState<BounceState>(
     BounceState.ClickEnd
@@ -61,7 +61,6 @@ const Home = ({ setOpenContent }: { setOpenContent(prop: boolean): void }) => {
   useEffect(() => {
     setTimeout(() => setOpenFace(true), 1900)
     setTimeout(() => handleClickBounce(), 2100)
-    setOpenContent(true)
   }, [])
 
   return (
@@ -74,7 +73,7 @@ const Home = ({ setOpenContent }: { setOpenContent(prop: boolean): void }) => {
     >
       {openFace && (
         <div className="absolute top-10 w-full h-[calc(100vh+250px)] mt-[-250px]">
-          <TarCanvas />
+          <TarCanvas changeColor={hoverHighlight} />
         </div>
       )}
 
@@ -82,7 +81,7 @@ const Home = ({ setOpenContent }: { setOpenContent(prop: boolean): void }) => {
         variants={zoomIn(1.6, 0.5)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: true }}
         className={`relative mt-0 md:mt-10 2xl:mt-20 flex items-center justify-center aspect-square 
           min-w-[350px] w-[85%] max-w-[500px] pointer-events-none circle-ring ${
             hoverHighlight ? 'purple' : ''

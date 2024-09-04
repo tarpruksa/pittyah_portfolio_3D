@@ -3,7 +3,7 @@ import { NavState } from '../constants/type'
 import { Mobile, navData } from '../constants/data'
 import { useScrollBlock } from '../hook/useScrollBlock'
 import { motion } from 'framer-motion'
-import { fadeIn } from '../constants/utils'
+import { fadeIn, zoomIn } from '../constants/utils'
 import SectionWrapper from '../hoc/SectionWrapper'
 import ProflieLink from './ProfileLink'
 import { useWindowSize } from '../hook/useWindowSize'
@@ -23,6 +23,9 @@ const NavMenu = ({ setToggleMenu }: { setToggleMenu(prop: boolean): void }) => {
           className={`transition section-subheader hover:text-slate-200 md:text-sm cursor-pointer ${
             active === nav.id ? 'text-slate-200' : ''
           }`}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
           onClick={(e) => {
             e.stopPropagation()
             setActive(nav.id)
@@ -32,7 +35,12 @@ const NavMenu = ({ setToggleMenu }: { setToggleMenu(prop: boolean): void }) => {
           <a href={`#${nav.id}`}>{nav.title}</a>
         </motion.li>
       ))}
-      <motion.li variants={fadeIn('down', 'spring', 1.4, 0.2)}>
+      <motion.li
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={fadeIn('down', 'spring', 1.4, 0.2)}
+      >
         <button
           className="py-2 px-3 lg:px-5 rounded-lg section-subheader md:text-sm cursor-pointer
                      hover:text-slate-200 button-shadow hover:bg-slate-900"
@@ -104,7 +112,11 @@ const Navbar = () => {
         />
       )}
       <div className="flex gap-6 sm:gap-10 md:gap-6 lg:gap-10">
-        <div
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={zoomIn(0, 0.4)}
           className="relative cursor-pointer"
           title="Home"
           onClick={() => window.scrollTo(0, 0)}
@@ -120,7 +132,7 @@ const Navbar = () => {
           <h1 className="absolute inset-0 grid place-items-center text-2xl text-blue-200">
             P
           </h1>
-        </div>
+        </motion.div>
 
         <ProflieLink />
       </div>
@@ -160,4 +172,4 @@ const Navbar = () => {
   )
 }
 
-export default SectionWrapper(Navbar, null)
+export default Navbar

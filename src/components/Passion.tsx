@@ -1,9 +1,8 @@
 import { NavState, PassionData, PassionType } from '../constants/type'
-import SectionWrapper from '../hoc/SectionWrapper'
 import { ShapeCanvas } from './canvas'
 import { fadeIn } from '../constants/utils'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { useWindowSize } from '../hook/useWindowSize'
 import { Mobile, passion, XLDesktop } from '../constants/data'
 import { Highlight } from './subcomponents'
@@ -13,6 +12,8 @@ interface PassionCardProps extends PassionData {
   setCurrentPassion(prop: PassionType): void
   active: boolean
 }
+
+const ShapeAsync = lazy(() => import('./canvas/ShapeCanvas.jsx' as any))
 
 const PassionCard = ({
   title,
@@ -74,6 +75,7 @@ const Passion = () => {
   const isXLScreen = windowSize >= XLDesktop
   const isMobile = windowSize < Mobile
 
+  console.log('render passion')
   useEffect(() => {
     setDetailText(
       passion.find((p) => {
@@ -84,9 +86,15 @@ const Passion = () => {
 
   return (
     <motion.div
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
       variants={fadeIn('up', 'spring', isXLScreen ? 2.5 : 0.6, 0.6)}
-      className="min-h-[80vh] 2xl:pt-10"
+      className="my-36 min-h-[80vh] 2xl:pt-10"
     >
+      <span className="absolute -mt-28" id={NavState.Passion}>
+        &nbsp;
+      </span>
       <h2 className="section-headtext">What I do</h2>
       <div className="flex flex-col gap-3">
         <p className="text-slate-400 text-lg text-justify leading-7 lg:leading-8 tracking-wide">
@@ -136,7 +144,9 @@ const Passion = () => {
           )}
         </div>
         <div className="absolute -inset-1 md:inset-0 overflow-hidden border-none rounded-md pointer-events-auto">
-          <ShapeCanvas shape={currentPassion} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <ShapeAsync shape={currentPassion} />
+          </Suspense>
         </div>
       </div>
 
@@ -153,4 +163,4 @@ const Passion = () => {
   )
 }
 
-export default SectionWrapper(Passion, NavState.Passion)
+export default Passion
