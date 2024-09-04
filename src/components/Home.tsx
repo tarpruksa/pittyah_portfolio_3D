@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
-import { AnimationType, BounceState, NavState } from '../constants/type'
+import { useEffect, useState } from 'react'
+import { BounceState } from '../constants/type'
 import { motion } from 'framer-motion'
-import { styles } from '../style'
-import { TarCanvas } from '../canvas'
-import { textVariant } from '../constants/utils'
-import { navCircle } from '../constants/data'
+import { TarCanvas } from './canvas'
+import { textVariant, zoomIn } from '../constants/utils'
+import { Highlight } from './subcomponents'
 
-const MainText = ({ setHoverHighlight }) => {
+const MainText = ({
+  setHoverHighlight,
+}: {
+  setHoverHighlight(prop: boolean): void
+}) => {
   return (
     <div
       onMouseEnter={() => {
@@ -15,60 +18,38 @@ const MainText = ({ setHoverHighlight }) => {
       onMouseLeave={() => {
         setHoverHighlight(false)
       }}
-      className="absolute top-[700px] cursor-default"
+      className="cursor-default pointer-events-auto"
     >
       <motion.div
-        variants={textVariant('down', 0.6, 0.6)}
+        variants={textVariant('down', 2.6, 0.6)}
         animate="show"
         initial="hidden"
         className="text-center"
       >
-        <h2 className={styles.headText}>
-          Hi, I'm <span className="text-main-blue">Pittayah</span>
+        <h2 className="text-slate-300 font-semibold text-4xl md:text-5xl">
+          Hi, I'm{' '}
+          <Highlight text="Pittayah!" extendClass="text-4xl md:text-5xl" />
         </h2>
       </motion.div>
 
       <motion.div
-        variants={textVariant('right', 1.2, 0.8)}
+        variants={textVariant('right', 3.2, 0.6)}
         animate="show"
         initial="hidden"
-        className="text-center"
+        className="text-center text-xl md:text-2xl mt-3 text-slate-400 tracking-wide"
       >
-        <h1>I'm a creative software developer from Thailand.</h1>
-        <h1 className={styles.sectionSubText}>create / develop</h1>
+        <h1>I code to build interactive digital worlds.</h1>
       </motion.div>
-
-      <div></div>
     </div>
   )
 }
-const About = ({ setCurrentNav }) => {
-  const [animation, setAnimation] = useState<AnimationType>(
-    AnimationType.Center
-  )
+
+const Home = ({ setOpenContent }: { setOpenContent(prop: boolean): void }) => {
   const [hoverHighlight, setHoverHighlight] = useState<boolean>(false)
   const [clickBounce, setClickBounce] = useState<BounceState>(
-    BounceState.Initial
+    BounceState.ClickEnd
   )
-
-  const handleSelect = (nav: NavState) => {
-    handleClickBounce()
-    if (nav === NavState.SkillCer || nav === NavState.Contact) {
-      setAnimation(AnimationType.Left)
-    } else if (nav === NavState.Home) {
-      setAnimation(AnimationType.Center)
-    } else {
-      setAnimation(AnimationType.Right)
-    }
-    setCurrentNav(nav)
-    setHoverHighlight(false)
-  }
-
-  const handleReset = () => {
-    handleClickBounce()
-    setAnimation(AnimationType.Center)
-    setCurrentNav(NavState.Home)
-  }
+  const [openFace, setOpenFace] = useState<boolean>(false)
 
   const handleClickBounce = () => {
     setClickBounce(BounceState.Click)
@@ -77,77 +58,45 @@ const About = ({ setCurrentNav }) => {
     }, 900)
   }
 
+  useEffect(() => {
+    setTimeout(() => setOpenFace(true), 1900)
+    setTimeout(() => handleClickBounce(), 2100)
+    setOpenContent(true)
+  }, [])
+
   return (
-    <>
-      <motion.div
-        variants={{ center: { x: 0 }, left: { x: -500 }, right: { x: 500 } }}
-        transition={{ type: 'tween' }}
-        animate={animation}
-      >
-        <div className="relative min-h-[100vh] flex flex-col justify-center items-center gap-20">
-          <div
-            className="tar-canvas"
-            // onClick={handleReset}
-          >
-            <TarCanvas />
-          </div>
-
-          <div
-            className={`absolute top-[100px] flex items-center justify-center z-0 aspect-square w-[550px] pointer-events-none${
-              clickBounce === BounceState.Initial ? ' avatar-wrapper' : ''
-            } `}
-            clickBounce={clickBounce}
-          >
-            <div className={`circle-ring${hoverHighlight ? ' purple' : ''}`}>
-              <i></i>
-              <i></i>
-              <i></i>
-            </div>
-          </div>
-
-          <MainText setHoverHighlight={setHoverHighlight} />
-
-          {animation === AnimationType.Center ? (
-            <>
-              {navCircle.map((c) => {
-                return (
-                  <div
-                    className={`absolute ${c.position}`}
-                    onMouseEnter={() => {
-                      setHoverHighlight(true)
-                    }}
-                    onMouseLeave={() => {
-                      setHoverHighlight(false)
-                    }}
-                  >
-                    <div
-                      className="circle-button"
-                      onClick={() => handleSelect(c.navRoute)}
-                    >
-                      <p className={styles.sectionSubText}>{c.title}</p>
-                    </div>
-                  </div>
-                )
-              })}
-            </>
-          ) : (
-            <div
-              className={`absolute top-[50%] ${
-                animation === AnimationType.Left ? 'left-[35%]' : 'right-[35%]'
-              }`}
-            >
-              <div
-                className="circle-button return"
-                onClick={() => handleSelect(NavState.Home)}
-              >
-                <p className={styles.sectionSubText}>HOME</p>
-              </div>
-            </div>
-          )}
+    <div
+      className={`relative w-auto  bg-primary p-4
+        flex flex-col justify-center items-center gap-12 md:gap-20
+        min-h-[100vh] overflow-hidden md:overflow-none translate-x-0
+        2xl:fixed  2xl:-translate-x-[30%] 2xl:inset-0
+        `}
+    >
+      {openFace && (
+        <div className="absolute top-10 w-full h-[calc(100vh+250px)] mt-[-250px]">
+          <TarCanvas />
         </div>
+      )}
+
+      <motion.div
+        variants={zoomIn(1.6, 0.5)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        className={`relative mt-0 md:mt-10 2xl:mt-20 flex items-center justify-center aspect-square 
+          min-w-[350px] w-[85%] max-w-[500px] pointer-events-none circle-ring ${
+            hoverHighlight ? 'purple' : ''
+          }`}
+        data-clickbounce={clickBounce}
+      >
+        <i></i>
+        <i></i>
+        <i></i>
       </motion.div>
-    </>
+
+      <MainText setHoverHighlight={setHoverHighlight} />
+    </div>
   )
 }
 
-export default About
+export default Home
