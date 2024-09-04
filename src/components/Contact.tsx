@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { AnimationType } from '../constants/type'
+import { useEffect, useState } from 'react'
+import { NavState } from '../constants/type'
 import SectionWrapper from '../hoc/SectionWrapper'
-import { motion } from 'framer-motion'
-import { textVariant } from '../constants/utils'
-import { styles } from '../style'
 import { validEmailReg } from '../constants/data'
 import emailjs from '@emailjs/browser'
-import Swal from 'sweetalert2'
+import { Title } from './subcomponents'
+import { motion } from 'framer-motion'
+import { fadeIn } from '../constants/utils'
+import { IoIosSend } from 'react-icons/io'
+import { FaCircleCheck } from 'react-icons/fa6'
+import { MdOutlineError } from 'react-icons/md'
 
 const Loader = () => {
   return (
-    <div className="loader">
+    <div className="ml-2 relative w-10 h-10 loader">
       <hr />
       <hr />
       <hr />
@@ -23,6 +25,7 @@ const Contact = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [active, setActive] = useState<boolean>(false)
   const [showNoValidEmail, setShowNoValidEmail] = useState<boolean>(false)
+  const [sendSuccess, setSendSuccess] = useState<boolean | null>(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -31,9 +34,9 @@ const Contact = () => {
 
   const getInputClass = (data: boolean) => {
     const inputClass =
-      'bg-slate-900 py-4 px-6 placeholder:text-secondary text-slate-300 rounded-lg outline-none border-none font-medium'
+      'py-4 px-5 placeholder:text-slate-500 text-slate-300 rounded-lg outline-none border-none'
 
-    return `${inputClass}${data ? ' bg-slate-800' : ''}`
+    return `${inputClass} ${data ? 'bg-slate-800' : 'bg-slate-900'}`
   }
 
   const handleChange = (e) => {
@@ -59,6 +62,7 @@ const Contact = () => {
     e.preventDefault()
     setLoading(true)
     if (showNoValidEmail) {
+      setLoading(false)
       return
     }
 
@@ -76,12 +80,7 @@ const Contact = () => {
       )
       .then(
         () => {
-          Swal.fire({
-            title: 'Success!',
-            text: 'Thank you for contacting me, I will get back to you as soon as possible.',
-            icon: 'success',
-            confirmButtonText: 'Ok',
-          })
+          setSendSuccess(true)
           setLoading(false)
           setForm({
             name: '',
@@ -91,12 +90,7 @@ const Contact = () => {
         },
         (error) => {
           console.error(error)
-          Swal.fire({
-            title: 'Error!',
-            text: 'Ahh, something went wrong. Please try again.',
-            icon: 'error',
-            confirmButtonText: 'Ok',
-          })
+          setSendSuccess(false)
           setLoading(false)
         }
       )
@@ -111,30 +105,34 @@ const Contact = () => {
     }
   }, [form])
 
+  useEffect(() => {
+    sendSuccess !== null && setTimeout(() => setSendSuccess(null), 5000)
+  }, [sendSuccess])
+
   return (
     <>
-      <motion.div variants={textVariant('down', 0.1)}>
-        <h2 className={styles.sectionHeadText}>Contact me</h2>
-      </motion.div>
-      <div className="border-grey p-8 pt-0 rounded-[10px] relative">
+      <Title text="Contact me" />
+      <motion.div
+        variants={fadeIn('left', 'spring', 0.6, 0.6)}
+        className="border border-slate-800 p-8 pt-0 rounded-[10px] relative"
+      >
         <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
           <label className="flex flex-col">
-            <span className="text-slate-300 font-medium mb-4">Your Name</span>
+            <span className="text-slate-300 mb-3">Your Name</span>
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="What's your good name?"
+              placeholder="John Doe"
               className={getInputClass(!!form.name && form.name != '')}
+              autoComplete="name"
               required
             />
           </label>
           <label className="flex flex-col">
-            <div>
-              <span className="text-slate-300 font-medium mb-4">
-                Your email
-              </span>
+            <div className="mb-3">
+              <span className="text-slate-300">Your Email</span>
               {showNoValidEmail && (
                 <span className="ml-4 text-red-400">
                   Invalid email, please type again.
@@ -147,43 +145,74 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               onBlur={validateEmail}
-              placeholder="What's your web address?"
+              placeholder="john.doe@example.com"
               className={getInputClass(!!form.email && form.email != '')}
+              autoComplete="email"
               required
             />
           </label>
           <label className="flex flex-col">
-            <span className="text-slate-300 font-medium mb-4">
-              Your Message
-            </span>
+            <span className="text-slate-300 mb-3">Your Message</span>
             <textarea
               rows={7}
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="What you want to say?"
+              placeholder="Hi Pittayah! This is John Doe, let's create something awesome together."
               className={getInputClass(!!form.message && form.message != '')}
               required
             />
           </label>
 
-          <button
-            type="submit"
-            className={`p-2 px-3 h-12 w-40 send ${active ? 'active' : ''}`}
-          >
-            {loading ? (
-              <div className="flex">
-                <Loader />
-                <p>Sending...</p>
-              </div>
-            ) : (
-              <p>Send</p>
-            )}
-          </button>
+          <div className="flex justify-between items-baseline">
+            <button
+              type="submit"
+              className={`ml-[1px] py-2 pl-3 pr-4 w-fit text-slate-400 hover:text-slate-100 text-base 
+             button-shadow rounded-lg ${
+               active ? 'bg-slate-700' : 'bg-slate-800'
+             } ${loading ? 'h-11' : ''}
+            `}
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="flex mt-0.5">
+                  <Loader />
+                  <p>Sending...</p>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <IoIosSend size={26} />
+                  <p>Send</p>
+                </div>
+              )}
+            </button>
+
+            <div
+              className={`flex gap-2 items-center
+                  transition duration-400 ${
+                    sendSuccess !== null ? 'opacity-100' : 'opacity-0 '
+                  } ${sendSuccess ? 'text-green-600' : 'text-red-400'} `}
+            >
+              {sendSuccess != null && (
+                <>
+                  <span>
+                    {sendSuccess
+                      ? 'Thank you for contacting me, I will get back to you as soon as possible.'
+                      : 'Ahh, something went wrong. Please try again.'}
+                  </span>
+                  {sendSuccess ? (
+                    <FaCircleCheck className="animate-bounce" size={22} />
+                  ) : (
+                    <MdOutlineError className="animate-bounce" size={24} />
+                  )}
+                </>
+              )}
+            </div>
+          </div>
         </form>
-      </div>
+      </motion.div>
     </>
   )
 }
 
-export default SectionWrapper(Contact, AnimationType.Right)
+export default SectionWrapper(Contact, NavState.Contact)
