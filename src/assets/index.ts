@@ -22,10 +22,13 @@ import c from './skill/c.png'
 import netmvc from './skill/netmvc.png'
 import azuredevops from './skill/azuredevops.svg'
 import p from './p.png'
-import sevenpeaks from './sevenpeaks.svg'
-import lex247logo from './lex247logo.png'
-import lex247 from './lex247.png'
-import codescreen from './codescreen.jpg'
+import lex247_small from './lex247_small.png'
+import sevenpeaks_small from './sevenpeaks_small.png'
+import smartcranes from './smartcranes.png'
+import t_film from './t-film.png'
+import artshop from './artshop.png'
+import t_film2 from './t-film2.jpg'
+import artshop2 from './artshop2.png'
 
 export {
   certificate_meta,
@@ -48,12 +51,15 @@ export {
   netmvc,
   azuredevops,
   p,
-  sevenpeaks,
-  lex247logo,
-  lex247,
-  codescreen,
   meta,
   google,
   ust,
   ibm,
+  lex247_small,
+  sevenpeaks_small,
+  smartcranes,
+  t_film,
+  t_film2,
+  artshop,
+  artshop2,
 }

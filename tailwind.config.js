@@ -4,26 +4,23 @@ module.exports = {
   mode: "jit",
   theme: {
     extend: {
+      fontFamily: {
+        'suse': ['SUSE', 'sans-serif']
+      },
       colors: {
         primary: "#050816",
-        "main-blue": "#265dff",
-        secondary: "#aaa6c3",
-        tertiary: "#151030",
-        "black-100": "#100d25",
-        "black-200": "#090325",
-        "white-100": "#f3f3f3",
-        "grey": "#2121215c",
-        "grey-2" :  "#121212"
-      },
-      boxShadow: {
-        card: "0px 35px 120px -15px #211e35",
+        secondary: "#a6bbc3",
       },
       screens: {
         xs: "450px",
       },
+      boxShadow: {
+        "black-md": "2px 4px 4px #000",
+      },
       dropShadow: {
         "white-md": "0 0px 5px #dadada",
         "white-lg": "0 0px 8px #dadada",
+        "black-xs": "2px 3px 3px #121212",
       }
     },
   },
