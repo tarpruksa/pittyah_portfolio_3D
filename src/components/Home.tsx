@@ -8,7 +8,7 @@ import { Highlight } from './subcomponents'
 const MainText = ({
   setHoverHighlight,
 }: {
-  setHoverHighlight(prop: boolean): void
+  setHoverHighlight(prop: React.SetStateAction<boolean>): void
 }) => {
   return (
     <div
@@ -18,6 +18,7 @@ const MainText = ({
       onMouseLeave={() => {
         setHoverHighlight(false)
       }}
+      onClick={() => setHoverHighlight((prev) => !prev)}
       className="cursor-default pointer-events-auto z-50"
     >
       <motion.div
@@ -59,13 +60,13 @@ const Home = () => {
   }
 
   useEffect(() => {
-    setTimeout(() => setOpenFace(true), 1900)
-    setTimeout(() => handleClickBounce(), 2100)
+    setTimeout(() => setOpenFace(true), 1500)
+    setTimeout(() => handleClickBounce(), 1700)
   }, [])
 
   return (
     <div
-      className={`relative w-auto  bg-primary p-4
+      className={`relative w-auto  bg-primary mx-4
         flex flex-col justify-center items-center gap-12 md:gap-20
         min-h-[100vh] overflow-hidden md:overflow-none translate-x-0
         2xl:fixed  2xl:-translate-x-[30%] 2xl:inset-0
@@ -78,7 +79,7 @@ const Home = () => {
       )}
 
       <motion.div
-        variants={zoomIn(1.6, 0.5)}
+        variants={zoomIn(1.2, 0.5)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}

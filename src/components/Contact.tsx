@@ -164,7 +164,7 @@ const Contact = () => {
             />
           </label>
 
-          <div className="flex justify-between items-baseline">
+          <div className="flex justify-between items-start gap-6">
             <button
               type="submit"
               className={`ml-[1px] py-2 pl-3 pr-4 w-fit text-slate-400 hover:text-slate-100 text-base 

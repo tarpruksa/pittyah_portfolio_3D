@@ -4,11 +4,16 @@ import { Mobile, navData } from '../constants/data'
 import { useScrollBlock } from '../hook/useScrollBlock'
 import { motion } from 'framer-motion'
 import { fadeIn, zoomIn } from '../constants/utils'
-import SectionWrapper from '../hoc/SectionWrapper'
 import ProflieLink from './ProfileLink'
 import { useWindowSize } from '../hook/useWindowSize'
 
-const NavMenu = ({ setToggleMenu }: { setToggleMenu(prop: boolean): void }) => {
+const NavMenu = ({
+  setToggleMenu,
+  isMobile,
+}: {
+  setToggleMenu(prop: boolean): void
+  isMobile: boolean
+}) => {
   const [active, setActive] = useState<NavState | null>()
 
   useEffect(() => {
@@ -23,7 +28,7 @@ const NavMenu = ({ setToggleMenu }: { setToggleMenu(prop: boolean): void }) => {
           className={`transition section-subheader hover:text-slate-200 md:text-sm cursor-pointer ${
             active === nav.id ? 'text-slate-200' : ''
           }`}
-          initial="hidden"
+          initial={isMobile ? 'show' : 'hidden'}
           whileInView="show"
           viewport={{ once: true }}
           onClick={(e) => {
@@ -36,7 +41,7 @@ const NavMenu = ({ setToggleMenu }: { setToggleMenu(prop: boolean): void }) => {
         </motion.li>
       ))}
       <motion.li
-        initial="hidden"
+        initial={isMobile ? 'show' : 'hidden'}
         whileInView="show"
         viewport={{ once: true }}
         variants={fadeIn('down', 'spring', 1.4, 0.2)}
@@ -94,7 +99,7 @@ const Navbar = () => {
     <nav
       className={`fixed px-6 md:px-8 lg:px-20 inset-0 flex justify-between 
         items-center transition h-20 z-20 ${
-          isScrollUp ? 'translate-y-0' : '-translate-y-20'
+          isScrollUp || isOnFirstView ? 'translate-y-0' : '-translate-y-20'
         } ${
         isOnFirstView
           ? 'bg-gradient-to-t from-primary to-slate-800'
@@ -105,8 +110,9 @@ const Navbar = () => {
     >
       {!toggleMenu && (
         <span
-          className="shimmer !-inset-8 opacity-55"
+          className="shimmer opacity-55"
           style={{
+            inset: '-33px',
             animation: !isOnFirstView ? 'wipe 3s linear infinite' : '',
           }}
         />
@@ -139,7 +145,7 @@ const Navbar = () => {
 
       {!isMobile ? (
         <ul className="list-none flex gap-5 lg:gap-7 xl:gap-12 items-center text-slate-400">
-          <NavMenu setToggleMenu={setToggleMenu} />
+          <NavMenu setToggleMenu={setToggleMenu} isMobile={false} />
         </ul>
       ) : (
         <div
@@ -164,7 +170,7 @@ const Navbar = () => {
           onClick={(e) => e.stopPropagation()}
         >
           <ul className="list-none flex flex-col items-center gap-16 text-slate-400">
-            <NavMenu setToggleMenu={setToggleMenu} />
+            <NavMenu setToggleMenu={setToggleMenu} isMobile={true} />
           </ul>
         </div>
       </div>

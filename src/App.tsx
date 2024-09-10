@@ -18,12 +18,12 @@ export default function App() {
       <div className="bg-primary">
         <Home />
         <div
-          className="px-6 md:px-14 lg:px-20 xl:px-32 2xl:w-[52%] 2xl:px-0 
+          className="w-auto mx-6 md:mx-14 lg:mx-20 xl:mx-32 
+                    2xl:w-[52%] 2xl:px-0 
                      relative 2xl:ml-auto 2xl:mr-20 
                      mt-[-60px] pb-16 md:py-16"
         >
           <Passion />
-
           <Work />
           <Skill />
           <Project />

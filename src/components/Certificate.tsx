@@ -56,7 +56,7 @@ const Certificate = () => {
           {certificates?.map((data, index) => (
             <motion.div
               key={index}
-              variants={fadeIn('right', 'spring', index * 0.5 + 0.35, 0.75)}
+              variants={fadeIn('right', 'spring', index * 0.45 + 0.3, 0.75)}
               className={`container-slate ${
                 data.span === 2 ? 'md:basis-[48.5%]' : 'md:basis-[31.5%]'
               } relative w-full md:flex-1 justify-between`}

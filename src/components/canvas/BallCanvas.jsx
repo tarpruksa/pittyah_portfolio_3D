@@ -12,6 +12,7 @@ import { useWindowSize } from '../../hook/useWindowSize'
 import { Mobile } from '../../constants/data'
 
 const RotateDEG = Math.PI / 8
+const RotateDEG2 = Math.PI * 8
 
 const Ball = (props) => {
   const meshRef = useRef()
@@ -61,6 +62,11 @@ const BallCanvas = ({ name, icon, index }) => {
     cameraControlRef.current?.rotate(rotateDeg, 0, true)
   }
 
+  const spinBall2 = () => {
+    const rotateDeg = index % 2 === 0 ? RotateDEG2 : -1 * RotateDEG2
+    cameraControlRef.current?.rotate(rotateDeg, 0, true)
+  }
+
   const zoomBall = () => {
     cameraControlRef.current?.zoom(-0.15, true)
   }
@@ -74,10 +80,11 @@ const BallCanvas = ({ name, icon, index }) => {
     py-2 rounded-[20px] hover:bg-slate-900"
     >
       <div
-        className={`${isMobile ? 'w-20 h-20' : 'w-24 h-24'}`}
+        className={`${isMobile ? 'w-20 h-20' : 'w-24 h-24'} cursor-pointer`}
         onMouseMove={spinBall}
-        onMouseEnter={zoomBall}
-        onMouseLeave={resetBall}
+        onMouseEnter={() => !isMobile && zoomBall()}
+        onMouseLeave={() => !isMobile && resetBall()}
+        onClick={spinBall2}
       >
         <Canvas
           frameloop="demand"

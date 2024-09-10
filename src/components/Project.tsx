@@ -63,7 +63,7 @@ const Project = () => {
           {projects.map((p, index) => (
             <motion.div
               key={index}
-              variants={fadeIn('right', 'spring', index * 0.5 + 0.35, 0.75)}
+              variants={fadeIn('right', 'spring', index * 0.35 + 0.15, 0.75)}
               className="container-slate w-full md:flex-1 relative px-6 gap-4"
             >
               <ProjectCard {...p} />

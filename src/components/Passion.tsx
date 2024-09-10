@@ -1,5 +1,4 @@
 import { NavState, PassionData, PassionType } from '../constants/type'
-import { ShapeCanvas } from './canvas'
 import { fadeIn } from '../constants/utils'
 import { motion } from 'framer-motion'
 import { lazy, Suspense, useEffect, useState } from 'react'
@@ -75,7 +74,6 @@ const Passion = () => {
   const isXLScreen = windowSize >= XLDesktop
   const isMobile = windowSize < Mobile
 
-  console.log('render passion')
   useEffect(() => {
     setDetailText(
       passion.find((p) => {
@@ -143,7 +141,7 @@ const Passion = () => {
             </>
           )}
         </div>
-        <div className="absolute -inset-1 md:inset-0 overflow-hidden border-none rounded-md pointer-events-auto">
+        <div className="absolute -inset-1 md:inset-0 overflow-hidden border-none rounded-md pointer-events-auto cursor-grab">
           <Suspense fallback={<div>Loading...</div>}>
             <ShapeAsync shape={currentPassion} />
           </Suspense>
