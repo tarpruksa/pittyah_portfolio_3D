@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, Suspense } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import {
   Bvh,
@@ -9,6 +9,7 @@ import {
   Environment,
 } from '@react-three/drei'
 import { PassionType } from '../../constants/type'
+import LoaderCanvas from './LoaderCanvas'
 
 const randomVector = (r) => [
   r / 2 - Math.random() * r,
@@ -98,26 +99,28 @@ export default function ShapeCanvas({ shape }) {
 
   return (
     <Canvas camera={{ position: [0, 0, -3.5], scale: 1 }}>
-      <color attach="background" args={['#0a102b']} />
-      <ambientLight intensity={0.5 * Math.PI} />
-      <directionalLight intensity={1} position={[5, 25, 20]} />
-      <Bvh firstHitOnly>
-        <Shapes shape={shape} />
-      </Bvh>
-      <Environment preset="city" />
+      <Suspense fallback={<LoaderCanvas />}>
+        <color attach="background" args={['#0a102b']} />
+        <ambientLight intensity={0.5 * Math.PI} />
+        <directionalLight intensity={1} position={[5, 25, 20]} />
+        <Bvh firstHitOnly>
+          <Shapes shape={shape} />
+        </Bvh>
+        <Environment preset="city" />
 
-      <OrbitControls
-        autoRotate
-        reverseOrbit={orbit}
-        autoRotateSpeed={
-          shape === PassionType.Design
-            ? 3
-            : shape === PassionType.Build
-            ? 4
-            : 2.5
-        }
-        enableZoom={false}
-      />
+        <OrbitControls
+          autoRotate
+          reverseOrbit={orbit}
+          autoRotateSpeed={
+            shape === PassionType.Design
+              ? 3
+              : shape === PassionType.Build
+              ? 4
+              : 2.5
+          }
+          enableZoom={false}
+        />
+      </Suspense>
     </Canvas>
   )
 }

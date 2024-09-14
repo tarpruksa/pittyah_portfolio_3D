@@ -8,33 +8,26 @@ import { useWindowSize } from '../../hook/useWindowSize'
 import { Mobile } from '../../constants/data'
 
 function Tar({ isMobile, changeColor }) {
-  const [enter, setEnter] = useState(false)
   const mesh = useRef()
   const lightBlue = useRef()
   const lightBlue2 = useRef()
   const lightPurple = useRef()
-  const tar = useGLTF('./tar.glb')
+  const tar = useGLTF('./tar.gltf')
   const [dummy] = useState(() => new THREE.Object3D())
 
   useFrame((state, dt) => {
     dummy.lookAt(state.pointer.x, state.pointer.y, 1)
     easing.dampQ(mesh.current.quaternion, dummy.quaternion, 0.15, dt)
 
-    // if (enter) {
     lightBlue.current.rotation.y -= dt + -0.03
     lightBlue2.current.rotation.z -= dt + -0.02
     lightPurple.current.rotation.y -= dt + 0.01
     lightPurple.current.rotation.z -= dt + 0.01
-    // }
   })
 
   return (
     <group>
-      <mesh
-        ref={mesh}
-        onPointerEnter={() => setEnter(true)}
-        onPointerLeave={() => setEnter(false)}
-      >
+      <mesh ref={mesh}>
         <primitive
           object={tar.scene}
           scale={isMobile ? 0.8 : 0.95}
