@@ -1,8 +1,15 @@
-import { IoMdMail } from 'react-icons/io'
 import {
   certificate_meta,
   certificate_google,
   certificate_react,
+  certificate_hardware,
+  certificate_cloud,
+  meta,
+  ust,
+  google,
+  ibm,
+} from '../assets/certificate'
+import {
   javascript,
   typescript,
   html,
@@ -16,12 +23,6 @@ import {
   threejs,
   c,
   netmvc,
-  meta,
-  ust,
-  google,
-  certificate_hardware,
-  ibm,
-  certificate_cloud,
   lex247_small,
   sevenpeaks_small,
   smartcranes,
@@ -46,6 +47,9 @@ export const Mobile = 768
 export const XLDesktop = 1536
 
 export const validEmailReg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
+export const linkToResume =
+  'https://drive.google.com/drive/folders/14PDYkCD-0FmHYfuUMJ43lFis31nWesFJ?usp=sharing'
 
 export const navData = [
   { id: NavState.Passion, title: 'About' },

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { NavState } from '../constants/type'
-import { Mobile, navData } from '../constants/data'
+import { linkToResume, Mobile, navData } from '../constants/data'
 import { useScrollBlock } from '../hook/useScrollBlock'
 import { motion } from 'framer-motion'
 import { fadeIn, zoomIn } from '../constants/utils'
@@ -40,7 +40,9 @@ const NavMenu = ({
           <a href={`#${nav.id}`}>{nav.title}</a>
         </motion.li>
       ))}
-      <motion.li
+      <motion.a
+        href={linkToResume}
+        target="_blank"
         initial={isMobile ? 'show' : 'hidden'}
         whileInView="show"
         viewport={{ once: true }}
@@ -52,7 +54,7 @@ const NavMenu = ({
         >
           Resume
         </button>
-      </motion.li>
+      </motion.a>
     </>
   )
 }

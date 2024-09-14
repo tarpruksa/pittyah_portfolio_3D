@@ -6,9 +6,18 @@ import { Pill, Title } from './subcomponents'
 import { MdLiveTv } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import { fadeIn } from '../constants/utils'
+import { useEffect, useState } from 'react'
 
 const ProjectCard = (props: ProjectData) => {
-  const { details, stacks, title, imgs, github, link } = props
+  const { details, stacks, title, imgs, github, link, index } = props
+  const [swapPicture, setSwapPicture] = useState<boolean>(false)
+
+  useEffect(() => {
+    setInterval(() => {
+      setSwapPicture((prev) => !prev)
+    }, 3500 + index * 1000)
+  }, [])
+
   return (
     <>
       <p className="text-slate-400 text-2xl font-bold">{title}</p>
@@ -25,7 +34,13 @@ const ProjectCard = (props: ProjectData) => {
         )}
       </div>
       <div className="w-full h-60 bg-slate-800 overflow-hidden group rounded-md">
-        <div className="flex items-start transition duration-300 hover:-translate-x-full">
+        <div
+          className={`flex items-start transition cursor-pointer ${
+            swapPicture
+              ? '-translate-x-full duration-700'
+              : 'translate-x-0 duration-700'
+          }`}
+        >
           {imgs.map((img, index) => (
             <img
               key={index}
@@ -66,7 +81,7 @@ const Project = () => {
               variants={fadeIn('right', 'spring', index * 0.35 + 0.15, 0.75)}
               className="container-slate w-full md:flex-1 relative px-6 gap-4"
             >
-              <ProjectCard {...p} />
+              <ProjectCard {...p} index={index} />
             </motion.div>
           ))}
         </div>

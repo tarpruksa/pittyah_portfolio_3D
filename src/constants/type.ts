@@ -41,6 +41,7 @@ export type ProjectData = BaseData & {
   imgs: string[]
   stacks: string[]
   github: string
+  index: number
 }
 type BaseData = {
   title: string

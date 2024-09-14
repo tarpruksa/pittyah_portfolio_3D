@@ -22,7 +22,7 @@ const MainText = ({
       className="cursor-default pointer-events-auto z-50"
     >
       <motion.div
-        variants={textVariant('down', 2.6, 0.6)}
+        variants={textVariant('down', 2.2, 0.6)}
         animate="show"
         initial="hidden"
         className="text-center"
@@ -34,7 +34,7 @@ const MainText = ({
       </motion.div>
 
       <motion.div
-        variants={textVariant('right', 3.2, 0.6)}
+        variants={textVariant('right', 2.8, 0.6)}
         animate="show"
         initial="hidden"
         className="text-center text-xl md:text-2xl mt-3 text-slate-400 tracking-wide"

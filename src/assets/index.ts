@@ -1,12 +1,3 @@
-import certificate_meta from './certificate/certificate_frontend_meta.jpg'
-import certificate_react from './certificate/certificate_frontend_react.jpg'
-import certificate_google from './certificate/certificate_python_google.jpg'
-import certificate_hardware from './certificate/certificate_hardware.jpg'
-import certificate_cloud from './certificate/certificate_cloud.jpg'
-import meta from './certificate/meta.png'
-import google from './certificate/google.png'
-import ust from './certificate/ust.svg'
-import ibm from './certificate/ibm.png'
 import css from './skill/css.png'
 import git from './skill/git.png'
 import html from './skill/html.png'
@@ -31,11 +22,6 @@ import t_film2 from './t-film2.jpg'
 import artshop2 from './artshop2.png'
 
 export {
-  certificate_meta,
-  certificate_react,
-  certificate_google,
-  certificate_hardware,
-  certificate_cloud,
   css,
   git,
   html,
@@ -51,10 +37,6 @@ export {
   netmvc,
   azuredevops,
   p,
-  meta,
-  google,
-  ust,
-  ibm,
   lex247_small,
   sevenpeaks_small,
   smartcranes,
